@@ -11,3 +11,8 @@
 ## Express VS Hapi VS Koa
 
 * https://www.sitepoint.com/express-koa-hapi/
+
+## Point
+
+* Hyper-Threading ?
+* Process Communication
