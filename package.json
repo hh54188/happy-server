@@ -1,4 +1,7 @@
 {
   "name": "super-server",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "hapi": "^17.5.1"
+  }
 }
