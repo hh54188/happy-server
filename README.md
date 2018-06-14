@@ -29,8 +29,11 @@
 * https://medium.freecodecamp.org/node-js-child-processes-everything-you-need-to-know-e69498fe970a
 * https://60devs.com/performance-of-inter-process-communications-in-nodejs.html
 
+## JWT
 
-## Point
+* https://medium.com/vandium-software/5-easy-steps-to-understanding-json-web-tokens-jwt-1164c0adfcec
 
-* Hyper-Threading ?
-* Process Communication
+## Token VS Cookie
+
+* https://dzone.com/articles/cookies-vs-tokens-the-definitive-guide
+* https://stackoverflow.com/questions/17000835/token-authentication-vs-cookies
