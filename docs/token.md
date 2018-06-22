@@ -4,12 +4,17 @@
 * https://dzone.com/articles/cookies-vs-tokens-the-definitive-guide
 * https://auth0.com/blog/ten-things-you-should-know-about-tokens-and-cookies/
 
+## Refresh Token
+
+* https://stackoverflow.com/questions/38986005/what-is-the-purpose-of-a-refresh-token
+
 ## TOKEN EXPIRED AND UPDATE
 
 * https://stackoverflow.com/questions/39825953/handling-jwt-expiration-and-jwt-payload-update
 * https://github.com/brahalla/Cerberus/issues/5
 * https://softwareengineering.stackexchange.com/questions/338337/handling-token-renewal-session-expiration-in-a-restful-api
 * https://www.zhihu.com/question/41248303
+* https://news.ycombinator.com/item?id=11929267
 
 
 ### ??
