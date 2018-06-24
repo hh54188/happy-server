@@ -7,6 +7,8 @@
 ## Refresh Token
 
 * https://stackoverflow.com/questions/38986005/what-is-the-purpose-of-a-refresh-token
+* https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them/
+* https://auth0.com/learn/refresh-tokens/
 
 ## TOKEN EXPIRED AND UPDATE
 
