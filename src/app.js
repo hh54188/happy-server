@@ -48,6 +48,7 @@ async function startServer() {
       }
     }
   });
+  await server.register(GraphQLPlugin);
   await server.start();
 }
 try {

@@ -4,7 +4,7 @@ module.exports = {
   register: function(server, options) {
     server.route({
       method: "GET",
-      path: "/graphql/",
+      path: "/test",
       handler: function(request, h) {
         return "Hello graphql";
       }
