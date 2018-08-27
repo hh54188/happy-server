@@ -1,4 +1,5 @@
 const Hapi = require("hapi");
+const next = require("next");
 
 const sampleHandler = require("./handlers/sample");
 const samplePlugin = require("./plugins/sample");
@@ -22,18 +23,20 @@ const server = new Hapi.Server({
   port: 4000
 });
 
-server.route({
-  method: "GET",
-  path: "/",
-  handler: sampleHandler
-});
-
 async function startServer() {
   await server.register(samplePlugin);
   await server.register(nextjsRenderPlugin);
   await server.register(reduxRenderPlugin);
   await server.start();
 }
+
+// https://github.com/zeit/next.js/blob/master/examples/custom-server-hapi/server.js
+// nextRenderService.prepare().then(async () => {
+server.route({
+  method: "GET",
+  path: "/",
+  handler: sampleHandler
+});
 
 try {
   startServer();
@@ -43,3 +46,4 @@ try {
 }
 
 console.log("Server running at: ", server.info.uri);
+// });
