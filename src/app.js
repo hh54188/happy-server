@@ -30,8 +30,6 @@ async function startServer() {
   await server.start();
 }
 
-// https://github.com/zeit/next.js/blob/master/examples/custom-server-hapi/server.js
-// nextRenderService.prepare().then(async () => {
 server.route({
   method: "GET",
   path: "/",
@@ -46,4 +44,3 @@ try {
 }
 
 console.log("Server running at: ", server.info.uri);
-// });
