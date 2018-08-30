@@ -1,4 +1,5 @@
 const Hapi = require("hapi");
+const Inert = require("inert");
 const next = require("next");
 
 const sampleHandler = require("./handlers/sample");
@@ -24,6 +25,7 @@ const server = new Hapi.Server({
 });
 
 async function startServer() {
+  await server.register(Inert);
   await server.register(samplePlugin);
   await server.register(nextjsRenderPlugin);
   await server.register(reduxRenderPlugin);
