@@ -1,3 +1,16 @@
-import React from 'react'
+import Layout from "../layout.js";
+import {
+  Form,
+  Select,
+  InputNumber,
+  DatePicker,
+  Switch,
+  Slider,
+  Button
+} from "antd";
 
-export default () => <div>a</div>
+export default () => (
+  <Layout>
+    <Button>BUTTON</Button>
+  </Layout>
+);

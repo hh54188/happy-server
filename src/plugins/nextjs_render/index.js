@@ -32,7 +32,7 @@ module.exports = {
 
     server.route({
       method: "GET",
-      path: "_next/on-demand-entries-ping/{param*}",
+      path: "/_next/on-demand-entries-ping",
       handler: nextHandlerWrapper(nextRenderService)
     });
 
