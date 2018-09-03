@@ -1,15 +1,16 @@
 const next = require("next");
 const path = require("path");
+const { assetPrefix, publicPath, pagesPath } = require("./constants");
 
 const nextRenderService = next({
   dir: path.join(__dirname),
-  dev: true
+  dev: process.env.NODE_ENV !== "production"
 });
 
 const { defaultHandler, nextHandlerWrapper } = require("./hanlders");
 
 module.exports = {
-  name: "NextjsRenderPlugin",
+  name: "AbTagRenderService",
   version: "0.0.1",
   register: async function(server, options) {
     // https://github.com/zeit/next.js/blob/master/examples/custom-server-hapi/server.js
@@ -17,7 +18,7 @@ module.exports = {
     await nextRenderService.prepare();
     server.route({
       method: "GET",
-      path: "/next/{param*}",
+      path: "/tag/{param*}",
       handler: function(request, h) {
         const routerHanlder = defaultHandler(nextRenderService);
         return routerHanlder(request);
@@ -26,22 +27,22 @@ module.exports = {
 
     server.route({
       method: "GET",
-      path: "/_next/webpack-hmr",
+      path: `/${assetPrefix}/webpack-hmr`,
       handler: nextHandlerWrapper(nextRenderService)
     });
 
     server.route({
       method: "GET",
-      path: "/_next/on-demand-entries-ping",
+      path: `/${assetPrefix}/on-demand-entries-ping`,
       handler: nextHandlerWrapper(nextRenderService)
     });
 
     server.route({
       method: "GET",
-      path: "/_next/-/page/{param*}",
+      path: `/${assetPrefix}/-/page/{param*}`,
       handler: {
         directory: {
-          path: path.join(__dirname, ".next", "bundles", "pages"),
+          path: pagesPath,
           listing: true
         }
       }
@@ -49,10 +50,10 @@ module.exports = {
 
     server.route({
       method: "GET",
-      path: "/_next/{param*}",
+      path: `/${assetPrefix}/{param*}`,
       handler: {
         directory: {
-          path: path.join(__dirname, ".next"),
+          path: publicPath,
           listing: true
         }
       }
