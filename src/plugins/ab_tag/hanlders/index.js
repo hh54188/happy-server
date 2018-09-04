@@ -13,7 +13,8 @@ const nextHandlerWrapper = app => {
 
 const defaultHandler = app => async ({ raw: { req, res }, url }) => {
   const { pathname, query } = parse(url, true);
-  return app.renderToHTML(req, res, pathname, query);
+  console.log("pathname--->", pathname);
+  return app.renderToHTML(req, res, "/c", query);
 };
 
 module.exports = {
