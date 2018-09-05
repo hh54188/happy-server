@@ -4,7 +4,8 @@ const next = require("next");
 
 const sampleHandler = require("./handlers/sample");
 const samplePlugin = require("./plugins/sample");
-const abTagRenderServicePlugin = require("./plugins/ab_tag");
+// const abTagRenderServicePlugin = require("./plugins/ab_tag");
+const appServicePlugin = require("./plugins/app");
 
 // ===== GraphQL Section =====
 // const { makeExecutableSchema } = require("graphql-tools");
@@ -24,8 +25,9 @@ const server = new Hapi.Server({
 
 async function startServer() {
   await server.register(Inert);
-  await server.register(abTagRenderServicePlugin);
+  // await server.register(abTagRenderServicePlugin);
   await server.register(samplePlugin);
+  await server.register(appServicePlugin);
   await server.start();
 }
 
