@@ -6,6 +6,7 @@ const { parse } = require("url");
 const nextHandlerWrapper = app => {
   const handler = app.getRequestHandler();
   return async ({ raw, url }, h) => {
+    console.log("url---->", url);
     await handler(raw.req, raw.res, url);
     return h.close;
   };

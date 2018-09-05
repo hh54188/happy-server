@@ -20,9 +20,8 @@ module.exports = {
     server.route({
       method: "GET",
       path: `/tag/${assetPrefix}/_next/webpack-hmr`,
-      handler: function() {
-        return nextHandlerWrapper(nextRenderService);
-      }
+      path: `/tag/tag_next/_next/webpack-hmr`,
+      handler: nextHandlerWrapper(nextRenderService)
     });
 
     server.route({
@@ -35,10 +34,9 @@ module.exports = {
 
     server.route({
       method: "GET",
-      path: `/tag/${assetPrefix}/_next/on-demand-entries-ping`,
-      handler: function() {
-        return nextHandlerWrapper(nextRenderService);
-      }
+      // path: `/tag/${assetPrefix}/_next/on-demand-entries-ping`,
+      path: `/tag/tag_next/_next/on-demand-entries-ping`,
+      handler: nextHandlerWrapper(nextRenderService)
     });
 
     server.route({
