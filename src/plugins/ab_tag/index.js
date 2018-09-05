@@ -21,15 +21,19 @@ module.exports = {
       method: "GET",
       path: `/tag/${assetPrefix}/_next/webpack-hmr`,
       path: `/tag/tag_next/_next/webpack-hmr`,
-      handler: nextHandlerWrapper(nextRenderService)
+      // handler: nextHandlerWrapper(nextRenderService)
+      handler: async function(request, h) {
+        const { raw, url } = request;
+        const handle = nextRenderService.getRequestHandler();
+        await handle(raw.req, raw.res, url);
+        return h.close;
+      }
     });
 
     server.route({
       method: "GET",
       path: "/tag/{param*}",
-      handler: function(request, h) {
-        return defaultHandler(nextRenderService)(request);
-      }
+      handler: defaultHandler(nextRenderService)
     });
 
     server.route({

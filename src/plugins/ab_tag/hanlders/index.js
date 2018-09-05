@@ -6,16 +6,16 @@ const { parse } = require("url");
 const nextHandlerWrapper = app => {
   const handler = app.getRequestHandler();
   return async ({ raw, url }, h) => {
-    if (url.pathname.indexOf("webpack-hmr") > -1) {
-      url = {
-        ...url,
-        pathname: "/_next/webpack-hmr",
-        path: "/_next/webpack-hmr",
-        href: "/_next/webpack-hmr"
-      };
-    } else if (url.pathname.indexOf("webpack-hmr") > -1) {
-    }
-    console.log("url--->", url);
+    // if (url.pathname.indexOf("webpack-hmr") > -1) {
+    //   url = {
+    //     ...url,
+    //     pathname: "/_next/webpack-hmr",
+    //     path: "/_next/webpack-hmr",
+    //     href: "/_next/webpack-hmr"
+    //   };
+    // } else if (url.pathname.indexOf("webpack-hmr") > -1) {
+    // }
+    // console.log("url--->", url);
     await handler(raw.req, raw.res, url);
     return h.close;
   };
