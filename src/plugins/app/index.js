@@ -4,7 +4,9 @@ const { assetPrefix, publicPath, pagesPath, distPath } = require("./constants");
 
 const nextRenderService = next({
   dir: path.join(__dirname),
-  dev: process.env.NODE_ENV !== "production"
+  dev: process.env.NODE_ENV !== "production",
+  distDir: distPath,
+  assetPrefix
 });
 
 const { defaultHandler, nextHandlerWrapper } = require("./handlers");
@@ -19,42 +21,42 @@ module.exports = {
 
     server.route({
       method: "GET",
-      path: `/app/${assetPrefix}/_next/webpack-hmr`,
-      handler: nextHandlerWrapper(nextRenderService)
-    });
-
-    server.route({
-      method: "GET",
       path: "/app/{param*}",
       handler: defaultHandler(nextRenderService)
     });
 
     server.route({
       method: "GET",
-      path: `/app/${assetPrefix}/_next/on-demand-entries-ping`,
+      path: `/_next/{param*}`,
       handler: nextHandlerWrapper(nextRenderService)
     });
 
-    server.route({
-      method: "GET",
-      path: `/app/${assetPrefix}/_next/-/page/{param*}`,
-      handler: {
-        directory: {
-          path: path.join(__dirname, pagesPath),
-          listing: true
-        }
-      }
-    });
+    // server.route({
+    //   method: "GET",
+    //   path: `/app/${assetPrefix}/_next/on-demand-entries-ping`,
+    //   handler: nextHandlerWrapper(nextRenderService)
+    // });
 
-    server.route({
-      method: "GET",
-      path: `/app/${assetPrefix}/_next/{param*}`,
-      handler: {
-        directory: {
-          path: path.join(__dirname, distPath),
-          listing: true
-        }
-      }
-    });
+    // server.route({
+    //   method: "GET",
+    //   path: `/app/${assetPrefix}/_next/-/page/{param*}`,
+    //   handler: {
+    //     directory: {
+    //       path: path.join(__dirname, pagesPath),
+    //       listing: true
+    //     }
+    //   }
+    // });
+
+    // server.route({
+    //   method: "GET",
+    //   path: `/app/${assetPrefix}/_next/{param*}`,
+    //   handler: {
+    //     directory: {
+    //       path: path.join(__dirname, distPath),
+    //       listing: true
+    //     }
+    //   }
+    // });
   }
 };
