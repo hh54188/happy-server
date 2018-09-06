@@ -7,7 +7,7 @@ const nextRenderService = next({
   dev: process.env.NODE_ENV !== "production"
 });
 
-const { defaultHandler, nextHandlerWrapper } = require("./hanlders");
+const { defaultHandler, nextHandlerWrapper } = require("./handlers");
 
 module.exports = {
   name: "AppService",
