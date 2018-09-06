@@ -3,21 +3,7 @@ const Inert = require("inert");
 const next = require("next");
 
 const sampleHandler = require("./handlers/sample");
-const samplePlugin = require("./plugins/sample");
-// const abTagRenderServicePlugin = require("./plugins/ab_tag");
 const appServicePlugin = require("./plugins/app");
-
-// ===== GraphQL Section =====
-// const { makeExecutableSchema } = require("graphql-tools");
-// const GraphQLPlugin = require("./plugins/graphql");
-// const { graphqlHapi, graphiqlHapi } = require("apollo-server-hapi");
-// const graphqlSchema = require("./plugins/graphql/schema");
-// const createResolvers = require("./plugins/graphql/resolvers");
-// const executableSchema = makeExecutableSchema({
-//   typeDefs: [graphqlSchema],
-//   resolvers: createResolvers()
-// });
-// ===== GraphQL Section =====
 
 const server = new Hapi.Server({
   port: 4000
@@ -25,8 +11,6 @@ const server = new Hapi.Server({
 
 async function startServer() {
   await server.register(Inert);
-  // await server.register(abTagRenderServicePlugin);
-  await server.register(samplePlugin);
   await server.register(appServicePlugin);
   await server.start();
 }

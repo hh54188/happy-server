@@ -1,8 +1,5 @@
 const { parse } = require("url");
 
-// const handler = app.getRequestHandler();
-// getRequestHandler 是干嘛用的？
-
 const nextHandlerWrapper = app => {
   const handler = app.getRequestHandler();
   return async ({ raw, url }, h) => {
