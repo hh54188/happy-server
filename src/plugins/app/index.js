@@ -4,9 +4,7 @@ const { assetPrefix, publicPath, pagesPath, distPath } = require("./constants");
 
 const nextRenderService = next({
   dir: path.join(__dirname),
-  dev: process.env.NODE_ENV !== "production",
-  distDir: distPath,
-  assetPrefix
+  dev: process.env.NODE_ENV !== "production"
 });
 
 const { defaultHandler, nextHandlerWrapper } = require("./handlers");
@@ -27,7 +25,7 @@ module.exports = {
 
     server.route({
       method: "GET",
-      path: `/app/${assetPrefix}/_next/{param*}`,
+      path: `/_next/{param*}`,
       handler: async ({ raw, url }, h) => {
         const handler = nextRenderService.getRequestHandler();
         const {
@@ -36,41 +34,50 @@ module.exports = {
           href: originHref
         } = url;
         const newURL = {
-          ...url,
-          pathname: originPathname.replace("/app/assetPrefix", ""),
-          path: originPath.replace("/app/assetPrefix", ""),
-          href: originHref.replace("/app/assetPrefix", "")
+          ...url
+          // pathname: originPathname.replace("/app/assetPrefix", ""),
+          // path: originPath.replace("/app/assetPrefix", ""),
+          // href: originHref.replace("/app/assetPrefix", "")
         };
         await handler(raw.req, raw.res, newURL);
         return h.close;
       }
     });
 
-    server.route({
-      method: "GET",
-      path: `/app/${assetPrefix}/_next/webpack-hmr`,
-      handler: async ({ raw, url }, h) => {
-        const handler = nextRenderService.getRequestHandler();
-        const {
-          pathname: originPathname,
-          path: originPath,
-          href: originHref
-        } = url;
-        const newURL = {
-          ...url,
-          pathname: originPathname.replace("/app", ""),
-          path: originPath.replace("/app", ""),
-          href: originHref.replace("/app", "")
-        };
-        await handler(raw.req, raw.res, newURL);
-        return h.close;
-      }
-    });
+    // server.route({
+    //   method: "GET",
+    //   path: `/_next/webpack-hmr`,
+    //   handler: async ({ raw, url }, h) => {
+    //     const handler = nextRenderService.getRequestHandler();
+    //     const {
+    //       pathname: originPathname,
+    //       path: originPath,
+    //       href: originHref
+    //     } = url;
+    //     const newURL = {
+    //       ...url
+    //       // pathname: originPathname.replace("/app", ""),
+    //       // path: originPath.replace("/app", ""),
+    //       // href: originHref.replace("/app", "")
 
-    server.route({
-      method: "GET",
-      path: `/app/${assetPrefix}/_next/on-demand-entries-ping`,
-      handler: nextHandlerWrapper(nextRenderService)
-    });
+    //       // pathname: originPathname.replace("/app/assetPrefix", ""),
+    //       // path: originPath.replace("/app/assetPrefix", ""),
+    //       // href: originHref.replace("/app/assetPrefix", "")
+
+    //       // pathname: originPathname.replace("/assetPrefix", ""),
+    //       // path: originPath.replace("/assetPrefix", ""),
+    //       // href: originHref.replace("/assetPrefix", "")
+    //     };
+    //     console.log(newURL);
+    //     await handler(raw.req, raw.res, newURL);
+    //     return h.close;
+    //   }
+    // });
+
+    // server.route({
+    //   method: "GET",
+    //   path: `/app/_next/on-demand-entries-ping`,
+    //   handler: nextHandlerWrapper(nextRenderService)
+    // });
   }
 };

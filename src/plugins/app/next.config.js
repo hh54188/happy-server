@@ -2,6 +2,6 @@
 const { assetPrefix, distPath } = require("./constants");
 
 module.exports = {
-  distDir: distPath,
-  assetPrefix
+  distDir: distPath
+  // assetPrefix
 };
